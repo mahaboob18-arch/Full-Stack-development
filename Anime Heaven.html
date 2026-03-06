@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Anime Heaven - Watch Anime Online For Free</title>
+<style>
+:root {
+    --main-red: #d2830d;
+    --dark-bg: #0d1117;
+    --card-bg: #161b22;
+    --text-light: #c9d1d9;
+    --text-dim: #8b949e;
+    --accent-blue: #58a6ff;
+}
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+header {
+    background: linear-gradient(to bottom, #0d1117, #0d1117dd);
+    padding: 1.2rem 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #30363d;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo {
+    font-size: 1.9rem;
+    font-weight: bold;
+    color: var(--main-red);
+    text-decoration: none;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.8rem;
+}
+
+nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: var(--accent-blue);
+}
+
+.search-box {
+    padding: 0.55rem 1rem;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    background: #0d1117;
+    color: var(--text-light);
+    width: 260px;
+    max-width: 100%;
+}
+
+.hero {
+    padding: 5rem 5% 3rem;
+    text-align: center;
+    background: linear-gradient(rgba(13,17,23,0.7), rgba(13,17,23,0.9)), url('https://images.alphacoders.com/135/thumb-1920-135.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero h1 {
+    font-size: 3.4rem;
+    margin-bottom: 0.8rem;
+    color: white;
+    text-shadow: 0 4px 12px black;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    max-width: 680px;
+    margin: 0 auto 2rem;
+    color: #d0d7e0;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--main-red);
+    color: white;
+    padding: 0.9rem 2.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.25s;
+}
+
+.btn:hover {
+    background: #ae6001;
+    transform: translateY(-2px);
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+h2 {
+    font-size: 2.1rem;
+    margin: 2.5rem 0 1.5rem;
+    color: white;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.4rem 1rem;
+}
+
+.poster {
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.22s ease;
+    position: relative;
+}
+
+.poster:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.5);
+}
+
+.poster img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+}
+
+.info {
+    padding: 0.9rem;
+}
+
+.title {
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.episode {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+}
+
+.tag {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(230,57,70,0.9);
+    color: white;
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    color: var(--text-dim);
+    border-top: 1px solid #30363d;
+    margin-top: 4rem;
+}
+
+@media (max-width: 820px) {
+    .top-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-box {
+        width: 100%;
+    }
+    
+    nav ul {
+        justify-content: center;
+        gap: 1.2rem;
+    }
+    
+    .hero {
+        padding: 4rem 5% 2.5rem;
+    }
+    
+    .hero h1 {
+        font-size: 2.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+    
+    .poster img {
+        height: 200px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="top-bar">
+        <a href="#" class="logo">Anime Heaven</a>
+        
+        <nav>
+            <ul>
+                <li><a href="#" id="home-link">Home</a></li>
+                <li><a href="#">Trending</a></li>
+                <li><a href="#">New Episodes</a></li>
+                <li><a href="#">Genres</a></li>
+            </ul>
+        </nav>
+        
+        <input type="text" class="search-box" placeholder="Search anime...">
+    </div>
+</header>
+
+<div id="home-page">
+
+<div class="hero">
+    <h1>Discover Your Next Favorite Anime</h1>
+    <p>Thousands of series with English subtitles and dubs – updated daily</p>
+    <a href="#" class="btn">Start Watching ➜</a>
+</div>
+
+<div class="container">
+
+    <h2>Popular This Week</h2>
+    <div class="grid">
+        <div class="poster">
+            <img src="https://i.pinimg.com/736x/be/ef/6f/beef6fdc70c5c549a5ad42a09b6fc36d.jpg" alt="One piece">
+            <div class="info">
+                <div class="title">One Piece</div>
+                <div class="episode">Action • Fantasy • 2026</div>
+            </div>
+        </div>
+        
+        <div class="poster">
+            <img src="https://preview.redd.it/jujutsu-kaisen-season-3-the-culling-game-part-1-another-ver-v0-iwpol6eica8g1.png?width=640&crop=smart&auto=webp&s=ee8f50975481dddab862aae65d5f556a32a13e04" alt="JJK">
+            <div class="info">
+                <div class="title">JJK:The Culling Game Arc Part-1</div>
+                <div class="episode">Action • Thriller</div>
+                 <div class="tag">New</div>
+            </div>
+        </div>
+        
+        <div class="poster">
+            <img src="https://m.media-amazon.com/images/M/MV5BMDYyZDEzNzktNDVhNS00MjJiLWJlZjgtY2IzZDY0OTNjMDU3XkEyXkFqcGc@._V1_.jpg" alt="Bleach TYBW">
+            <div class="info">
+                <div class="title">Bleach : Thousand Year Blood War - The Conflict</div>
+                <div class="episode">Action • Shonen •  Supernatural </div>
+            </div>
+        </div>
+        
+        <div class="poster">
+            <img src="https://a.storyblok.com/f/178900/240x360/1e21acb8f4/blue-lock-2nd-season-kv-2-240.png/m/filters:quality(95)format(webp)" alt="Blue lock S2">
+            <div class="info">
+                <div class="title">Blue Lock vs. U-20 Japan</div>
+                <div class="episode">Sports • Drama</div>
+            </div>
+        </div>
+        
+        <div class="poster">
+            <img src="https://preview.redd.it/from-scale-0-to-100-how-highly-would-u-rate-naruto-v0-f94t7ikylqze1.jpeg?width=640&crop=smart&auto=webp&s=0205ce60e23b39cc0f6a02a71a6524bd1f962f93" alt="Naruto Shippuden">
+            <div class="info">
+                <div class="title">Naruto Shippuden</div>
+                <div class="episode">Action • Adventure</div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Recently Added</h2>
+    <div class="grid">
+        <div class="poster">
+            <img src="https://a.storyblok.com/f/178900/2000x3000/ebdc3e73b3/frieren_s2_2x3_2000x3000.png/m/filters:quality(95)format(webp)" alt="Frieren S2">
+            <div class="info">
+                <div class="title">Frieren: Beyond Journey's End S2</div>
+                <div class="episode">Fantasy • Adventure • </div>
+            </div>
+            <div class="tag">New</div>
+        </div>
+        
+        <div class="poster">
+            <img src="https://rukminim2.flixcart.com/image/480/480/jxf05u80/poster/v/g/2/medium-and-anime-your-lie-in-april-kaori-miyazono-kousei-arima-original-imaf9kyhys3rthus.jpeg?q=90" alt="Your lie inn April">
+            <div class="info">
+                <div class="title">Your Lie in April</div>
+                <div class="episode">Drama • Music • Romance</div>
+            </div>
+            
+        </div>
+        
+        <div class="poster">
+            <img src="https://image.tmdb.org/t/p/original/3Ei4hmeZBlQcCuPgI65KPjMGswM.jpg" alt="I want To Eat Your Pancreas">
+            <div class="info">
+                <div class="title">I want To Eat Your Pancreas</div>
+                <div class="episode">Romance• Drama• Teen</div>
+            </div>
+           
+        </div>
+        
+        <div class="poster">
+            <img src="https://m.media-amazon.com/images/M/MV5BOGFmZDY5MmEtM2M0MS00N2M4LTgwNWMtMTUxM2QzODA1NTY5XkEyXkFqcGc@._V1_.jpg" alt="AOT : The Last Attack">
+            <div class="info">
+                <div class="title">Attack on Titan : The Last Attack</div>
+                <div class="episode">Action • Dark Fantasy </div>
+            </div>
+            
+        </div>
+        
+        <div class="poster">
+            <img src="https://preview.redd.it/blue-box-season-2-teaser-visual-v0-qbino4bjch8g1.jpeg?auto=webp&s=a9641445bd17561ee73f3dfb15991391454431a2" alt="Blue Box S2">
+            <div class="info">
+                <div class="title">Blue Box Season 2</div>
+                <div class="episode">Romance • School • Sports</div>
+            </div>
+            <div class="tag">New</div>
+        </div>
+    </div>
+
+</div>  
+
+</div> <!-- end of home-page -->
+
+<footer>
+    <p>© Anime Heaven • 2026 • All Rights Reserved</p>
+</footer>
+
+<script>
+    // Simple home page show/hide (for now just shows home; can extend for other pages later)
+    document.getElementById('home-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('home-page').style.display = 'block';
+        // If you add other page sections later, hide them here
+        window.scrollTo(0, 0); // scroll to top
+    });
+
+    // Ensure home is visible by default
+    document.getElementById('home-page').style.display = 'block';
+</script>
+
+</body>
+</html>
