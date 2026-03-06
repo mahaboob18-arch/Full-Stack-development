@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> DOM Manipulation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    background: #0f2027;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Animated Background Blobs */
+body::before, body::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    filter: blur(120px);
+    animation: float 8s infinite alternate ease-in-out;
+}
+
+body::before {
+    background: #ff00cc;
+    top: -100px;
+    left: -100px;
+}
+
+body::after {
+    background: #00f2fe;
+    bottom: -100px;
+    right: -100px;
+}
+
+@keyframes float {
+    from { transform: translateY(0px); }
+    to { transform: translateY(50px); }
+}
+
+/* Card */
+.card {
+    position: relative;
+    width: 420px;
+    padding: 40px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    text-align: center;
+    color: white;
+    transition: 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Heading */
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+/* Box */
+#box {
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    background: rgba(255,255,255,0.15);
+    transition: 0.5s ease;
+}
+
+/* Neon Buttons */
+button {
+    margin: 8px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(45deg, #ff00cc, #3333ff);
+    transition: 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #ff00cc, 0 0 30px #3333ff;
+}
+
+/* Hide animation */
+.hidden {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2 id="heading">JavaScript DOM Playground</h2>
+
+    <div id="box">
+        <p id="para">Click buttons below to manipulate this content.</p>
+    </div>
+
+    <button onclick="changeContent()">Change Content</button>
+    <button onclick="changeStyle()">Change Style</button>
+    <button onclick="toggleVisibility()">Show / Hide</button>
+</div>
+
+<script>
+function changeContent() {
+    document.getElementById("heading").innerText = "Content Updated!";
+    document.getElementById("para").innerText =
+        "This text was dynamically changed using JavaScript DOM.";
+}
+
+function changeStyle() {
+    let box = document.getElementById("box");
+    box.style.background = "linear-gradient(45deg, #00f2fe, #4facfe)";
+    box.style.color = "#000";
+    box.style.borderRadius = "25px";
+}
+
+function toggleVisibility() {
+    document.getElementById("box").classList.toggle("hidden");
+}
+</script>
+
+</body>
+</html>
