@@ -1,0 +1,297 @@
+<!doctype html>
+<html>
+<head>
+<title>Void Circuit | Cyber Gaming Café</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#070b11;
+    color:#fff;
+}
+
+/* NAVBAR */
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    padding:15px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:1000;
+}
+
+nav h2{
+    color:#00ffd5;
+}
+
+nav a{
+    margin-left:25px;
+    text-decoration:none;
+    color:#ccc;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#00ffd5;
+}
+
+/* HERO */
+.hero{
+    height:100vh;
+    background:
+        linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.9)),
+        url("https://images.unsplash.com/photo-1603481546579-65d935ba9cdd?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+    display:flex;
+    align-items:center;
+    padding:80px;
+}
+
+.hero-content{
+    max-width:600px;
+}
+
+.hero h1{
+    font-size:70px;
+}
+
+.hero h1 span{
+    color:#00ffd5;
+}
+
+.hero p{
+    margin:20px 0;
+    color:#aaa;
+}
+
+.hero button{
+    padding:14px 40px;
+    background:#00ffd5;
+    border:none;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* FEATURE STRIP */
+.features{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    background:#05080c;
+}
+
+.feature{
+    padding:40px;
+    text-align:center;
+    border-right:1px solid #111;
+    transition:.3s;
+}
+
+.feature:hover{
+    background:#0d141c;
+}
+
+.feature img{
+    width:60px;
+    margin-bottom:15px;
+}
+
+/* ABOUT */
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    min-height:80vh;
+}
+
+.about img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.about-text{
+    padding:80px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.about-text h2 span{
+    color:#00ffd5;
+}
+
+/* ZONES */
+.zones{
+    padding:80px;
+    background:#0b1118;
+}
+
+.zone-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+    margin-top:40px;
+}
+
+.zone{
+    position:relative;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+.zone img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.zone:hover img{
+    transform:scale(1.1);
+}
+
+.zone-info{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    padding:20px;
+    background:linear-gradient(transparent,black);
+}
+
+/* GALLERY */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.gallery img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+/* CTA */
+.cta{
+    background:linear-gradient(90deg,#00ffd5,#00aaff);
+    padding:80px;
+    text-align:center;
+    color:black;
+}
+
+.cta button{
+    margin-top:20px;
+    padding:15px 45px;
+    border:none;
+    font-size:16px;
+    font-weight:bold;
+}
+
+/* FOOTER */
+footer{
+    background:#05080c;
+    padding:40px;
+    text-align:center;
+    color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+    <h2>VOID CIRCUIT</h2>
+    <div>
+        <a href="#">Home</a>
+        <a href="#">Arena</a>
+        <a href="#">Pricing</a>
+        <a href="#">Events</a>
+        <a href="#">Contact</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>ENTER THE <span>VOID</span></h1>
+        <p>Next-gen cyber gaming café built for esports, streamers, and night grinders.</p>
+        <button>BOOK YOUR RIG</button>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+    <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/919/919827.png">
+        <h3>240Hz Gaming</h3>
+    </div>
+    <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/2906/2906274.png">
+        <h3>RTX Powered</h3>
+    </div>
+    <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/1048/1048943.png">
+        <h3>Low Latency</h3>
+    </div>
+    <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png">
+        <h3>Tournaments</h3>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+    <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=1200&q=80">
+    <div class="about-text">
+        <h2>ABOUT <span>VOID CIRCUIT</span></h2>
+        <p>Premium rigs, immersive lighting, competitive gaming environment.</p>
+    </div>
+</section>
+
+<!-- ZONES -->
+<section class="zones">
+    <h2>GAMING ZONES</h2>
+
+    <div class="zone-grid">
+        <div class="zone">
+            <img src="https://cdn.mos.cms.futurecdn.net/v2/t:0,l:262,cw:1524,ch:1143,q:80,w:1524/H6vCgCRJNWdThpivvr6Wq.jpeg">
+            <div class="zone-info">PC Arena</div>
+        </div>
+        <div class="zone">
+            <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=1200&q=80">
+            <div class="zone-info">Console Lounge</div>
+        </div>
+        <div class="zone">
+            <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=1200&q=80">
+            <div class="zone-info">VR Pods</div>
+        </div>
+        <div class="zone">
+            <img src="https://images.squarespace-cdn.com/content/v1/5aa3c20fe17ba3bbd0728e03/1572731685292-80UEQ2N4V2DE2S1MR0HW/TWITCH_FINAL_FLOOR_2_-_STREAMING_AREA_A-studio+copy.jpg?format=2500w">
+            <div class="zone-info">Streamer Booth</div>
+        </div>
+    </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cta">
+    <h2>READY TO LEVEL UP?</h2>
+    <p>Seats fill fast. Lock yours now.</p>
+    <button>RESERVE NOW</button>
+</section>
+
+<footer>
+    © Void Circuit Cyber Gaming Café
+</footer>
+
+</body>
+</html>
