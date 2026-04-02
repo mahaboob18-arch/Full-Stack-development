@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sample Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #000, #111);
+    color: #f5d77a;
+    text-align: center;
+}
+
+/* Container */
+.container {
+    margin: 30px auto;
+    width: 90%;
+    max-width: 500px;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255, 215, 0, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,215,0,0.2);
+    box-shadow: 0 0 25px rgba(255,215,0,0.2);
+    overflow: hidden; /* FIX */
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 1px solid gold;
+    background: transparent;
+    color: gold;
+    cursor: pointer;
+    margin: 10px;
+}
+button:hover {
+    background: gold;
+    color: black;
+}
+
+/* Input */
+input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid gold;
+    background: transparent;
+    color: gold;
+    width: 80%;
+}
+
+/* SLIDER FIX */
+.slider-box {
+    position: relative;
+    width: 100%;
+    height: 220px;   /* fixed height */
+    overflow: hidden; /* IMPORTANT */
+    border-radius: 15px;
+}
+
+#slider {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* prevents stretch + overflow */
+    border-radius: 15px;
+    border: 2px solid gold;
+    transition: opacity 0.6s ease, transform 3s ease;
+}
+
+/* Zoom */
+.zoom {
+    transform: scale(1.1);
+}
+
+/* Quote */
+.quote {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.6);
+    padding: 8px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+/* Dots */
+.dots span {
+    height: 10px;
+    width: 10px;
+    margin: 5px;
+    display: inline-block;
+    background: gray;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.dots .active {
+    background: gold;
+}
+
+/* Counter */
+#count {
+    font-size: 35px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>👑</h1>
+
+<!-- Background -->
+<div class="container">
+    <button onclick="changeBg()">Change Background</button>
+</div>
+
+<!-- Live typing -->
+<div class="container">
+    <input type="text" id="liveInput" placeholder="Type...">
+    <p id="liveText"></p>
+</div>
+
+<!-- Password -->
+<div class="container">
+    <input type="password" id="password">
+    <br>
+    <button onclick="togglePassword()">Show/Hide</button>
+</div>
+
+<!-- SLIDER -->
+<div class="container">
+    <div class="slider-box" onmouseover="pauseSlide()" onmouseout="startSlide()">
+        <img id="slider">
+        <div class="quote" id="quote"></div>
+    </div>
+
+    <div class="dots" id="dots"></div>
+
+    <button onclick="prevImage()">Prev</button>
+    <button onclick="nextImage()">Next</button>
+</div>
+
+<!-- Counter -->
+<div class="container">
+    <h2 id="count">0</h2>
+    <button onclick="decrement()">-</button>
+    <button onclick="increment()">+</button>
+</div>
+
+<script>
+// Background
+function changeBg() {
+    const colors = [
+        "linear-gradient(135deg,#000,#1a1a1a)",
+        "linear-gradient(135deg,#000,#332200)"
+    ];
+    document.body.style.background = colors[Math.floor(Math.random()*colors.length)];
+}
+
+// Live typing
+document.getElementById("liveInput").addEventListener("input", function() {
+    document.getElementById("liveText").innerText = this.value;
+});
+
+// Password
+function togglePassword() {
+    let p = document.getElementById("password");
+    p.type = p.type === "password" ? "text" : "password";
+}
+
+// SLIDES (YOUR IMAGES)
+let slides = [
+{
+img: "https://preview.redd.it/aizen-and-some-of-his-most-iconic-quotes-v0-3gj4c7rl4jbd1.jpeg?width=725&format=pjpg&auto=webp&s=775d815bba83e9b66efc69a55a612b9f5470376e",
+quote: "Admiration is the furthest thing from understanding."
+},
+{
+img: "https://preview.redd.it/aizen-and-some-of-his-most-iconic-quotes-v0-94pi5l5u2jbd1.jpg?width=640&crop=smart&auto=webp&s=46cee16a4f6c9d280b2f8ebcf35d3701a2b43f5c",
+quote: "All beings exist for my purpose."
+},
+{
+img: "https://pbs.twimg.com/media/FQ4GZkdUUAIqgfL.jpg",
+quote: "No one stands above me."
+}
+];
+
+let index = 0;
+let slider = document.getElementById("slider");
+let quote = document.getElementById("quote");
+let dotsContainer = document.getElementById("dots");
+let interval;
+
+// dots
+slides.forEach((_, i) => {
+    let dot = document.createElement("span");
+    dot.onclick = () => { index = i; showImage(); };
+    dotsContainer.appendChild(dot);
+});
+
+function updateDots() {
+    let dots = document.querySelectorAll(".dots span");
+    dots.forEach(d => d.classList.remove("active"));
+    dots[index].classList.add("active");
+}
+
+// show image
+function showImage() {
+    slider.style.opacity = 0;
+
+    setTimeout(() => {
+        slider.src = slides[index].img;
+        quote.innerText = slides[index].quote;
+
+        slider.classList.remove("zoom");
+        void slider.offsetWidth;
+        slider.classList.add("zoom");
+
+        slider.style.opacity = 1;
+        updateDots();
+    }, 300);
+}
+
+// controls
+function nextImage() {
+    index = (index + 1) % slides.length;
+    showImage();
+}
+function prevImage() {
+    index = (index - 1 + slides.length) % slides.length;
+    showImage();
+}
+
+// auto
+function startSlide() {
+    clearInterval(interval);
+    interval = setInterval(nextImage, 3000);
+}
+function pauseSlide() {
+    clearInterval(interval);
+}
+
+// counter
+let count = 0;
+function increment() {
+    count++;
+    document.getElementById("count").innerText = count;
+}
+function decrement() {
+    count--;
+    document.getElementById("count").innerText = count;
+}
+
+// init
+showImage();
+startSlide();
+</script>
+
+</body>
+</html>
